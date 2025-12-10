@@ -1,0 +1,41 @@
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (large files)
+data/
+
+# Results (optional - uncomment if you want to track results)
+# results/
+
+# Logs
+*.log
+logs/
+

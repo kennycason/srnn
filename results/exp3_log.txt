@@ -1,0 +1,71 @@
+======================================================================
+EXPERIMENT 3: TWO-PHASE TRAINING
+======================================================================
+Phase 1: 4 experts on 10,000 images
+Phase 2: 16 experts on remaining images (no replay)
+Device: mps
+
+Loading dataset from ../data/tiny_imagenet_full/train...
+Total images: 100000
+Phase 1 images: 10,000
+Phase 2 images: 90,000
+
+======================================================================
+PHASE 0: Pretraining autoencoder
+======================================================================
+  [AE Pretrain] Epoch 1/5, Loss: 0.018689
+  [AE Pretrain] Epoch 2/5, Loss: 0.005369
+  [AE Pretrain] Epoch 3/5, Loss: 0.003257
+  [AE Pretrain] Epoch 4/5, Loss: 0.002379
+  [AE Pretrain] Epoch 5/5, Loss: 0.001988
+
+======================================================================
+PHASE 1: 4 experts on 10,000 images
+======================================================================
+  Epoch 1/10: loss=0.055914, active=4/4, CV=0.589
+  Epoch 2/10: loss=0.008055, active=4/4, CV=0.206
+  Epoch 3/10: loss=0.002787, active=4/4, CV=0.194
+  Epoch 4/10: loss=0.002514, active=4/4, CV=0.333
+  Epoch 5/10: loss=0.002319, active=4/4, CV=0.318
+  Epoch 6/10: loss=0.002493, active=4/4, CV=0.274
+  Epoch 7/10: loss=0.002281, active=4/4, CV=0.256
+  Epoch 8/10: loss=0.001898, active=4/4, CV=0.271
+  Epoch 9/10: loss=0.001841, active=4/4, CV=0.266
+  Epoch 10/10: loss=0.001983, active=4/4, CV=0.317
+
+======================================================================
+PHASE 2: Adding 12 experts, training on 90,000 new images
+======================================================================
+  Added 12 experts (total: 16)
+  Epoch 1/10: loss=0.004018, active=16/16, CV=0.791
+  Epoch 2/10: loss=0.002501, active=16/16, CV=0.757
+  Epoch 3/10: loss=0.002091, active=16/16, CV=0.863
+  Epoch 4/10: loss=0.001543, active=16/16, CV=0.814
+  Epoch 5/10: loss=0.001379, active=16/16, CV=0.788
+  Epoch 6/10: loss=0.001864, active=16/16, CV=0.844
+  Epoch 7/10: loss=0.001329, active=16/16, CV=0.872
+  Epoch 8/10: loss=0.000953, active=16/16, CV=1.104
+  Epoch 9/10: loss=0.000771, active=16/16, CV=0.911
+  Epoch 10/10: loss=0.000656, active=16/16, CV=0.910
+
+======================================================================
+FINAL EVALUATION
+======================================================================
+
+Phase 1 data (test forgetting): Loss = 0.000445
+Phase 2 data: Loss = 0.000445
+Active experts: 16/16
+Usage CV: 1.069
+
+Saving results...
+
+======================================================================
+EXPERIMENT 3 COMPLETE
+======================================================================
+Phase 1 Loss (forgetting test): 0.000445
+Phase 2 Loss: 0.000445
+Active Experts: 16/16
+Usage CV: 1.069
+Total Time: 27.2 minutes
+
+Results saved to results/exp3_two_phase/

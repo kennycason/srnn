@@ -9,7 +9,10 @@ from collections import defaultdict
 import time
 from typing import Dict, List, Optional, Callable
 
-from .models import MoEAutoencoder
+try:
+    from .models import MoEAutoencoder
+except ImportError:
+    from models import MoEAutoencoder
 
 
 def compute_metrics(

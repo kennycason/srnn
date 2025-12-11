@@ -1,0 +1,45 @@
+======================================================================
+EXPERIMENT 1: FIXED CAPACITY BASELINE
+======================================================================
+Experts: 16 (fixed)
+Epochs: 40
+Device: mps
+
+Loading dataset from ../data/tiny_imagenet_full/train...
+Total images: 100000
+
+Creating model with 16 experts...
+
+Pretraining autoencoder (10 epochs)...
+  [AE Pretrain] Epoch 1/10, Loss: 0.003384
+  [AE Pretrain] Epoch 2/10, Loss: 0.000892
+  [AE Pretrain] Epoch 3/10, Loss: 0.000697
+  [AE Pretrain] Epoch 4/10, Loss: 0.000611
+  [AE Pretrain] Epoch 5/10, Loss: 0.000544
+  [AE Pretrain] Epoch 6/10, Loss: 0.000488
+  [AE Pretrain] Epoch 7/10, Loss: 0.000477
+  [AE Pretrain] Epoch 8/10, Loss: 0.000455
+  [AE Pretrain] Epoch 9/10, Loss: 0.000407
+  [AE Pretrain] Epoch 10/10, Loss: 0.000394
+
+Training MoE (40 epochs on all data)...
+  Epoch 5/40: loss=0.000264, active=16/16, CV=0.605, time=160.3s
+  Epoch 10/40: loss=0.000199, active=16/16, CV=0.623, time=560.7s
+  Epoch 15/40: loss=0.000166, active=16/16, CV=0.633, time=154.0s
+  Epoch 20/40: loss=0.000150, active=16/16, CV=0.561, time=165.7s
+  Epoch 25/40: loss=0.000134, active=16/16, CV=0.166, time=156.6s
+  Epoch 30/40: loss=0.000126, active=16/16, CV=0.239, time=158.5s
+  Epoch 35/40: loss=0.000118, active=16/16, CV=0.501, time=153.2s
+  Epoch 40/40: loss=0.000112, active=16/16, CV=0.184, time=162.5s
+
+Saving results...
+
+======================================================================
+EXPERIMENT 1 COMPLETE
+======================================================================
+Final Loss: 0.000112
+Active Experts: 16/16
+Usage CV: 0.184
+Total Time: 405.7 minutes
+
+Results saved to results/exp1_fixed/

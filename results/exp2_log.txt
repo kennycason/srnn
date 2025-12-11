@@ -1,0 +1,74 @@
+======================================================================
+EXPERIMENT 2: PROGRESSIVE EXPERT GROWTH
+======================================================================
+Start: 2 experts
+End: 16 experts
+Add 1 expert every 7143 images
+Replay: False
+Device: mps
+
+Loading dataset from ../data/tiny_imagenet_full/train...
+Total images: 100000
+
+======================================================================
+PHASE 0: Pretraining autoencoder
+======================================================================
+  [AE Pretrain] Epoch 1/5, Loss: 0.019444
+  [AE Pretrain] Epoch 2/5, Loss: 0.005018
+  [AE Pretrain] Epoch 3/5, Loss: 0.002910
+  [AE Pretrain] Epoch 4/5, Loss: 0.002254
+  [AE Pretrain] Epoch 5/5, Loss: 0.001795
+
+======================================================================
+PROGRESSIVE TRAINING
+======================================================================
+
+  [+] Added expert #3 at 7168 images
+  Images: 10,112, Experts: 3, Loss: 0.002906, CV: 0.198
+
+  [+] Added expert #4 at 14336 images
+  Images: 20,096, Experts: 4, Loss: 0.001470, CV: 0.400
+
+  [+] Added expert #5 at 21504 images
+
+  [+] Added expert #6 at 28672 images
+  Images: 30,080, Experts: 6, Loss: 0.001578, CV: 0.387
+
+  [+] Added expert #7 at 35840 images
+  Images: 40,064, Experts: 7, Loss: 0.001588, CV: 0.735
+
+  [+] Added expert #8 at 42880 images
+  Images: 50,048, Experts: 8, Loss: 0.001351, CV: 0.978
+
+  [+] Added expert #9 at 50048 images
+
+  [+] Added expert #10 at 57216 images
+  Images: 60,032, Experts: 10, Loss: 0.001356, CV: 1.269
+
+  [+] Added expert #11 at 64384 images
+  Images: 70,016, Experts: 11, Loss: 0.001372, CV: 1.180
+
+  [+] Added expert #12 at 71552 images
+
+  [+] Added expert #13 at 78592 images
+  Images: 80,000, Experts: 13, Loss: 0.001339, CV: 1.351
+
+  [+] Added expert #14 at 85760 images
+  Images: 90,000, Experts: 14, Loss: 0.001390, CV: 0.556
+
+======================================================================
+FINAL EVALUATION
+======================================================================
+
+Saving results...
+
+======================================================================
+EXPERIMENT 2 COMPLETE
+======================================================================
+Final Loss: 0.001117
+Active Experts: 14/16
+Usage CV: 1.404
+Total Time: 1.6 minutes
+Total Images: 90,000
+
+Results saved to results/exp2_progressive/

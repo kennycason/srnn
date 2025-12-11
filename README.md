@@ -74,15 +74,28 @@ Input Image (64×64×3)
 
 ## Results
 
-We compared three approaches on 100K images from Tiny ImageNet:
+We compared three training approaches on 100K images from Tiny ImageNet:
 
-| Approach | Active Experts | CV | Final Loss |
-|----------|----------------|-----|------------|
-| Progressive (plain) | 3/16 | 2.45 | 0.00005 |
-| Fixed Capacity | 12/16 | 2.15 | 0.00004 |
-| **Saturation Routing** | **16/16** | **1.19** | 0.00015 |
+| Experiment | Approach | Active Experts | CV (↓ better) | Loss |
+|------------|----------|----------------|---------------|------|
+| Fixed Capacity | 16 experts, 40 epochs, replay | **16/16** | **0.184** | 0.000112 |
+| Progressive | 2→16 experts, no replay | 14/16 | 1.404 | 0.001117 |
+| Two-Phase | 4→16 experts, no replay | **16/16** | 1.069 | 0.000445 |
 
-**Key finding:** Saturation routing achieves **100% expert utilization** with the best balance (lowest CV), solving the progressive collapse problem.
+### Key Findings
+
+1. **Saturation routing prevents collapse**: Without it, progressive growth collapses to ~3/16 active experts. With it, we maintain **87-100% utilization**.
+
+2. **No replay needed**: Two-Phase achieves full 16/16 utilization without seeing any data twice — enabling true continual learning.
+
+3. **Trade-offs**:
+   - Fixed: Best balance but requires replay
+   - Progressive: Fastest but slight utilization drop
+   - Two-Phase: Best for continual learning scenarios
+
+![Comparison](results/comparison/metrics_comparison.png)
+
+📊 **[See detailed results and analysis →](RESULTS.md)**
 
 ## Experiments
 
@@ -159,20 +172,27 @@ python experiments/exp3_two_phase.py
 
 ```
 srnn/
-├── srnn/
-│   ├── __init__.py
-│   ├── models.py      # Encoder, Decoder, Expert, MoEAutoencoder
-│   ├── router.py      # SaturationRouter with gradient tracking
-│   ├── training.py    # Training loops and metrics
-│   └── analysis.py    # Visualization utilities
+├── __init__.py
+├── models.py          # Encoder, Decoder, Expert, MoEAutoencoder
+├── router.py          # SaturationRouter with gradient tracking
+├── training.py        # Training loops and metrics
+├── analysis.py        # Visualization utilities
 ├── experiments/
 │   ├── demo.py
 │   ├── exp1_fixed.py
 │   ├── exp2_progressive.py
-│   └── exp3_two_phase.py
+│   ├── exp3_two_phase.py
+│   └── compare_all.py # Generate comparison visualizations
 ├── results/           # Saved experiment results
+│   ├── comparison/    # Cross-experiment comparisons
+│   ├── demo/
+│   ├── exp1_fixed/
+│   ├── exp2_progressive/
+│   └── exp3_two_phase/
 ├── requirements.txt
-└── README.md
+├── README.md
+├── RESULTS.md         # Detailed experimental analysis
+└── CONTEXT.md         # Development notes
 ```
 
 ## Hyperparameters
